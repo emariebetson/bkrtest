@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from 'axios';
+//import "./style.css";
+import axios from "axios";
 
 class Form extends Component {
   // Setting the component's initial state
@@ -28,50 +29,86 @@ class Form extends Component {
     if (!this.state.username) {
       alert("Fill out your username please!");
     } else if (this.state.password.length < 6) {
-      alert(
-        `Choose a more secure password ${this.state.username}`
-      );
+      alert(`Choose a more secure password ${this.state.username}`);
     }
     console.log(this.state);
-    axios.post('http://localhost:3001/api/register', { username: this.state.username, password: this.state.password })
+    axios
+      .post("http://localhost:3001/api/register", {
+        username: this.state.username,
+        password: this.state.password
+      })
       .then(res => {
         console.log(res);
         console.log(res.data);
         this.setState({
           username: "",
           password: ""
-        })
-      }).catch(error => {
-        console.log(error)
+        });
       })
-
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
-      <div>
-        <p>
-          Hello {this.state.username}
-        </p>
-        <form className="form">
-          <input
-            value={this.state.username}
-            name="username"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="username"
-          />
-          <input
-            value={this.state.password}
-            name="password"
-            onChange={this.handleInputChange}
-            type="password"
-            placeholder="Password"
-          />
-          <button onClick={this.handleFormSubmit}>Submit</button>
-        </form>
-      </div>
+      <>
+        <section id="banner">
+          {/* <img
+            src={require("../images/1920X900.jpg")}
+            alt="iPhone"
+            className="img-responsive"
+         />*/}
+          <div className="container">
+            <div className="sign-up-form">
+              {/* <img src={require("../images/logo.png")} alt="BuzzKillr" />*/}
+              <div className="line-divider"></div>
+              <div className="form-wrapper">
+                <p className="signup-text">
+                  Sign up to save time by cutting lines.
+                </p>
+                <form className="form" action="#">
+                  <fieldset className="form-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="example-name"
+                      value={this.state.username}
+                      name="username"
+                      onChange={this.handleInputChange}
+                      placeholder="username"
+                    ></input>
+                  </fieldset>
+                  <fieldset className="form-group">
+                    <input
+                      className="form-control"
+                      type="password"
+                      id="example-password"
+                      value={this.state.password}
+                      name="password"
+                      onChange={this.handleInputChange}
+                      placeholder="Password"
+                    ></input>
+                  </fieldset>
+                </form>
+                <p>By signing up you agree to the terms & conditions.</p>
+                <button
+                  className="btn-secondary"
+                  onClick={this.handleFormSubmit}
+                >
+                  Sign Up
+                </button>
+              </div>
+              <img
+                className="form-shadow"
+                src={require("../images/bottom-shadow.png")}
+                alt=""
+              />
+            </div>
+          </div>
+        </section>
+      </>
     );
   }
 }

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 class MakePost extends Component {
   // Setting the component's initial state
   state = {
     barName: "",
-    time: "",
+    time: ""
   };
 
   handleInputChange = event => {
@@ -24,30 +24,32 @@ class MakePost extends Component {
     event.preventDefault();
     if (!this.state.barName) {
       alert("Fill out your barname please!");
-    } 
+    }
     console.log(this.state);
-    axios.post('http://localhost:3001/api/posts', { barName: this.state.barName, time: this.state.time },
-    console.log( 'i made it into the frontend post route'))   
+    axios
+      .post(
+        "http://localhost:3001/api/posts",
+        { barName: this.state.barName, time: this.state.time },
+        console.log("i made it into the frontend post route")
+      )
       .then(res => {
         console.log(res);
         console.log(res.data);
         this.setState({
           barName: "",
           time: ""
-        })
-      }).catch(error => {
-        console.log(error)
+        });
       })
-
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
       <div>
-        <p>
-          Hello {this.state.barName}
-        </p>
+        <p>Hello {this.state.barName}</p>
         <form className="form">
           <input
             value={this.state.barName}

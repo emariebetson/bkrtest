@@ -1,3 +1,4 @@
-nav.navbar.navbar-default {
-  margin-bottom: 0;
+.navbar navbar-expand-lg navbar-light bg-light {
+  display: flex;
+  justify-content: flex-end;
 }
