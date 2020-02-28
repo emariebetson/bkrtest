@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require("../../controllers/AuthController");
+const postsController = require('../../controllers/PostsController')
 
 // router.route('/')
 //         .post(auth.bodyTest);
@@ -41,5 +42,9 @@ router.route('/users')
 // router.get('/users', (req, res) => {
 //     console.log("pong")
 // })
+
+router.route('/posts')
+    .get(postsController.findAll)
+    .post(postsController.create);
 
 module.exports = router;

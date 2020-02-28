@@ -7,7 +7,6 @@ var PostSchema = new Schema({
     time: 
         {
         Type: Date,
-        default: Date.now
         },
     
     lineLength: Number, 
