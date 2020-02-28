@@ -1,11 +1,11 @@
 import React from "react";
 
-function newsfeed() {
+function searchbars() {
     return (
         <div>
-            Profile Newsfeed
+            Search for Bars
         </div>
     );
 }
 
-export default newsfeed;
+export default searchbars;
