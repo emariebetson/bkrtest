@@ -52,12 +52,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require('./routes');
 var passport = require('passport');
-var User = require('./models/user/User.js');
+var User = require('./models/User.js');
 var LocalStrategy = require('passport-local').Strategy;
 
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
