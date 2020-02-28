@@ -12,7 +12,7 @@ router.get('/', auth.home);
 
 router.get('/test', (req, res) => {
         console.log('hitting test')
-        res.json({json: true})
+        res.json({ json: true })
 });
 
 // route for register action

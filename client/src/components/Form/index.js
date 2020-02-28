@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./style.css";
 import axios from 'axios';
 
 class Form extends Component {
@@ -26,15 +25,15 @@ class Form extends Component {
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    if (!this.state.username ) {
+    if (!this.state.username) {
       alert("Fill out your username please!");
     } else if (this.state.password.length < 6) {
       alert(
         `Choose a more secure password ${this.state.username}`
       );
-    } 
+    }
     console.log(this.state);
-    axios.post('http://localhost:3001/api/register', {username: this.state.username, password: this.state.password} )
+    axios.post('http://localhost:3001/api/register', { username: this.state.username, password: this.state.password })
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -44,7 +43,7 @@ class Form extends Component {
         })
       }).catch(error => {
         console.log(error)
-      }) 
+      })
 
   };
 
@@ -53,15 +52,15 @@ class Form extends Component {
     return (
       <div>
         <p>
-          Hello {this.state.username} 
+          Hello {this.state.username}
         </p>
         <form className="form">
           <input
             value={this.state.username}
-            name= "username"
+            name="username"
             onChange={this.handleInputChange}
             type="text"
-            placeholder= "username"
+            placeholder="username"
           />
           <input
             value={this.state.password}
