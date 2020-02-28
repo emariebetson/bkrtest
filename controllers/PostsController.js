@@ -5,7 +5,7 @@ module.exports = {
     //find all movies
     findAll: function(req, res) {
         console.log('i am in the route')
-        db.Posts
+        db
             .find({})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -19,7 +19,8 @@ module.exports = {
     },
     //create movie
     create: function(req, res) {
-        db.Posts
+        console.log('i am in the create route')
+        db
             .create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));

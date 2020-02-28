@@ -4,13 +4,9 @@ var Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
     barName: String,
-    time: 
-        {
-        Type: Date,
-        },
-    
+    time: Number,
     lineLength: Number, 
-    usedId: [
+    userId: [
         {
           type: Schema.Types.ObjectId,
           ref: "User"
