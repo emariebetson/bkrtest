@@ -10,8 +10,9 @@ class MakePost extends Component {
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
-    let value = event.target.value;
     const name = event.target.name;
+    let value = event.target.value;
+    
 
     // Updating the input's state
     this.setState({
@@ -50,14 +51,14 @@ class MakePost extends Component {
     return (
       <div>
         <p>Hello {this.state.barName}</p>
-        <form className="form">
-          <input
-            value={this.state.barName}
-            name="barName"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="barName"
-          />
+        <form className="form" action="/action_page.php">
+        <label for="bars">Choose a bar:</label>
+          <select value={this.state.barName} name="barName" onChange={this.handleInputChange}>
+            <option value="Danny's">Danny's</option>
+            <option value="OGs">OGs</option>
+            <option value="Hangge Uppe">Hangge Uppe</option>
+            <option value="Happy Camper">Happy Camper</option>
+          </select>
           <input
             value={this.state.time}
             name="time"

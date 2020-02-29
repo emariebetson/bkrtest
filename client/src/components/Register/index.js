@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 //import "./style.css";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 
 class Form extends Component {
@@ -10,7 +9,6 @@ class Form extends Component {
     password: ""
   };
 
- 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -37,8 +35,7 @@ class Form extends Component {
     axios
       .post("http://localhost:3001/api/register", {
         username: this.state.username,
-        password: this.state.password,
-        isLoggedIn: true
+        password: this.state.password
       })
       .then(res => {
         console.log(res);
@@ -69,7 +66,7 @@ class Form extends Component {
               <div className="line-divider"></div>
               <div className="form-wrapper">
                 <p className="signup-text">
-                  Log in to save time waiting in line.
+                Sign up to save time by cutting lines. 
                 </p>
                 <form className="form" action="#">
                   <fieldset className="form-group">
@@ -95,16 +92,8 @@ class Form extends Component {
                     ></input>
                   </fieldset>
                 </form>
-                <p>Don't have an account? You can <Link
-              to="/register"
-              className={
-                window.location.pathname === "/register"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-            >
-              Register
-            </Link></p>
+                <p>By signing up you agree to the terms & conditions.</p>
+                <p>Already have an account?</p>
                 <button
                   className="btn-secondary"
                   onClick={this.handleFormSubmit}
