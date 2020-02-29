@@ -20,7 +20,8 @@ function App() {
       <Router>
         <div>
           <Navbar />
-          <Route exact path="/" component={Form} />
+          <Route exact path="/login" component={Form} />
+          <Route exact path="/register" component={Register}/>
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/newsfeed" component={NewsFeed} />
           <Route exact path="/hotbars" component={HotBars} />
