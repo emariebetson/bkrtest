@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Form from "./components/Form";
 import Profile from "./pages/profile";
-import NewsFeed from "./pages/newsfeed";
+import BarMap from "./components/map";
 import HotBars from "./pages/HotBars";
 import SearchBar from "./pages/SearchBar";
 import Wrapper from "./components/Wrapper";
@@ -17,7 +17,7 @@ function App() {
           <Navbar />
           <Route exact path="/" component={Form} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/newsfeed" component={NewsFeed} />
+          <Route exact path="/map" component={BarMap} />
           <Route exact path="/hotbars" component={HotBars} />
           <Route exact path="/search" component={SearchBar} />
 
