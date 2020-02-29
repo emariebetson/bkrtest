@@ -1,16 +1,18 @@
 import React, {useState, useEffect} from "react";
 import MakePost from '../components/MakePost';
-=======
+import UserContext from '../utils/UserContext'
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BarMap from "./../components/map"
 
-function NewsFeed() {
-  const [newsFeedPosts, setNewsFeedPosts] = useState([]);
+
+function NewsFeed(props) {
+  // console.log(userState);
+  const [newsFeedPosts, setNewsFeedPosts] =useState([]);
 
   useEffect(() => {
     loadPosts();
-
+    // console.log(props)
   })
   // function deletePost(_id) {
   //     axios.delete(_id)
@@ -28,15 +30,15 @@ function NewsFeed() {
 
   return (
     <>
-    <MakePost></MakePost>
+    <MakePost userInfo={props.userInfo}></MakePost>
     <br></br>
-    <div>This is the current newsfeed: </div>
+    <div>This is the current newsfeed: {props.userInfo.isLoggedIn}, {props.userInfo.username}</div>
     {newsFeedPosts.map(post => {
                   return (
-                    <div key={post._id}>At {(post.date)}
+                    <div key={post._id}>{post.username}: At {(post.date)}
                         <strong>
                           {post.barName}:  
-=======
+
       <div>This is the current newsfeed: </div>
       <BarMap />
       {newsFeedPosts.map(post => {

@@ -20,15 +20,16 @@ userController.register = function(req, res) {
 
 // Post registration
 userController.doRegister = function(req, res) {
-  // res.json(req.body)
-  User.register(new User({ username : req.body.username}), req.body.password, req.body.isLoggedIn, function(err, user) {
+ console.log(req.body)
+  User.register(new User({ username : req.body.username}), req.body.password, function(err, user) {
     if (err) {
       return res.render('register', { user : user });
     }
-
+    res.json(user)
     passport.authenticate('local')(req, res, function () {
       console.log('im authenticated bitchezzzzzzz')
-      res.redirect('/');
+      // res.redirect('/');
+      // res.json({json: true})
     });
   });
 };
