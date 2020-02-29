@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import MakePost from '../components/MakePost';
 import axios from "axios";
 
 function NewsFeed() {
@@ -24,6 +25,8 @@ function NewsFeed() {
 
   return (
     <>
+    <MakePost></MakePost>
+    <br></br>
     <div>This is the current newsfeed: </div>
     {newsFeedPosts.map(post => {
                   return (

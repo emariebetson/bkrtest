@@ -3,13 +3,18 @@ const router = express.Router();
 const auth = require("../../controllers/AuthController");
 const postsController = require('../../controllers/PostsController')
 
+
+function loggedIn (req, res, next) {
+        console.log(req.user)
+      }
+    
 // router.route('/')
 //         .post(auth.bodyTest);
 // restrict index for logged in user only
-router.get('/', auth.home);
+router.get('/', loggedIn, auth.home);
 
 // route to register page
-// router.get('/register', auth.register);
+router.get('/register', auth.register);
 
 router.get('/test', (req, res) => {
         console.log('hitting test')
@@ -21,9 +26,6 @@ router.post('/register', auth.doRegister);
 
 
 
-// router.post('/register', (req, res)=> {
-//     console.log({req, res});
-// });
 
 // route to login page
 router.get('/login', auth.login);
