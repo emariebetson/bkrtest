@@ -1,3 +1,6 @@
+import React, {useState, useEffect} from "react";
+import MakePost from '../components/MakePost';
+=======
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BarMap from "./../components/map"
@@ -25,6 +28,15 @@ function NewsFeed() {
 
   return (
     <>
+    <MakePost></MakePost>
+    <br></br>
+    <div>This is the current newsfeed: </div>
+    {newsFeedPosts.map(post => {
+                  return (
+                    <div key={post._id}>At {(post.date)}
+                        <strong>
+                          {post.barName}:  
+=======
       <div>This is the current newsfeed: </div>
       <BarMap />
       {newsFeedPosts.map(post => {
