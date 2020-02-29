@@ -1,8 +1,8 @@
 import React from "react";
 
 const UserContext = React.createContext({
-  currentUser: "",
-  isLoggedIn: true
+  username: "",
+  isLoggedIn: 0
 });
 
 export default UserContext;

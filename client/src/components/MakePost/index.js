@@ -3,6 +3,9 @@ import axios from "axios";
 
 class MakePost extends Component {
   // Setting the component's initial state
+  constructor(props){
+    super(props);
+  }
   state = {
     barName: "",
     time: ""
@@ -30,7 +33,7 @@ class MakePost extends Component {
     axios
       .post(
         "http://localhost:3001/api/posts",
-        { barName: this.state.barName, time: this.state.time },
+        { barName: this.state.barName, time: this.state.time, username: this.props.userInfo.username },
         console.log("i made it into the frontend post route")
       )
       .then(res => {
@@ -54,6 +57,7 @@ class MakePost extends Component {
         <form className="form" action="/action_page.php">
         <label for="bars">Choose a bar:</label>
           <select value={this.state.barName} name="barName" onChange={this.handleInputChange}>
+          <option value="Select an option">Select an option</option>
             <option value="Danny's">Danny's</option>
             <option value="OGs">OGs</option>
             <option value="Hangge Uppe">Hangge Uppe</option>
