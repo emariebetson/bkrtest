@@ -8,6 +8,11 @@ import HotBars from "./pages/HotBars";
 import SearchBar from "./pages/SearchBar";
 import Wrapper from "./components/Wrapper";
 import MakePost from "./components/MakePost";
+import HomeFeatures from "./components/HomeFeatures";
+import HomeDownload from "./components/HomeDownload";
+import HomeFacts from "./components/HomeFacts";
+import HomeLiveFeed from "./components/HomeLiveFeed";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -20,12 +25,12 @@ function App() {
           <Route exact path="/newsfeed" component={NewsFeed} />
           <Route exact path="/hotbars" component={HotBars} />
           <Route exact path="/search" component={SearchBar} />
-
-          <MakePost />
         </div>
       </Router>
-
-      <Wrapper />
+      <div>
+        <HomeLiveFeed />
+        <Footer />
+        </div>
     </>
   );
 }
