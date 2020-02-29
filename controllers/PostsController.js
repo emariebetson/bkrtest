@@ -4,7 +4,6 @@ const db = require('../models/Posts');
 module.exports = {
     //find all movies
     findAll: function(req, res) {
-        console.log('i am in the route')
         db
             .find({})
             .then(dbModel => res.json(dbModel))

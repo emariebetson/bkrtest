@@ -45,6 +45,7 @@ router.route('/users')
 
 router.route('/posts')
     .get(postsController.findAll)
-    .post(postsController.create);
+    .post(postsController.create)
+    .delete(postsController.delete);
 
 module.exports = router;

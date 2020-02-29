@@ -6,6 +6,7 @@ var PostSchema = new Schema({
     barName: String,
     time: Number,
     lineLength: Number, 
+    date: { type: Date, default: Date.now },
     userId: [
         {
           type: Schema.Types.ObjectId,
