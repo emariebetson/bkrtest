@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from "react";
 import MakePost from '../components/MakePost';
+=======
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import BarMap from "./../components/map"
 
 function NewsFeed() {
-  const [newsFeedPosts, setNewsFeedPosts] =useState([]);
+  const [newsFeedPosts, setNewsFeedPosts] = useState([]);
 
   useEffect(() => {
     loadPosts();
-   
+
   })
   // function deletePost(_id) {
   //     axios.delete(_id)
@@ -17,9 +20,9 @@ function NewsFeed() {
 
   function loadPosts() {
     axios
-    .get("http://localhost:3001/api/posts")
-    .then(res => {
-      setNewsFeedPosts(res.data)
+      .get("http://localhost:3001/api/posts")
+      .then(res => {
+        setNewsFeedPosts(res.data)
       })
   }
 
@@ -33,16 +36,24 @@ function NewsFeed() {
                     <div key={post._id}>At {(post.date)}
                         <strong>
                           {post.barName}:  
+=======
+      <div>This is the current newsfeed: </div>
+      <BarMap />
+      {newsFeedPosts.map(post => {
+        return (
+          <div key={post._id}>At {(post.date)}
+            <strong>
+              {post.barName}:
                         </strong>
-                        <span> had a {post.time} minute wait</span>
-                        {/* <button onClick={() => deletePost(post._id)}>Delete</button> */}
-                    </div>
-                  );
-                })}
+            <span> had a {post.time} minute wait</span>
+            {/* <button onClick={() => deletePost(post._id)}>Delete</button> */}
+          </div>
+        );
+      })}
     </>
   )
-  
-    
+
+
 }
 
 export default NewsFeed;
