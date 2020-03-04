@@ -1,19 +1,17 @@
-import React, {useState, useEffect} from "react";
-import MakePost from '../components/MakePost';
-import UserContext from '../utils/UserContext'
+import MakePost from "../components/MakePost";
+import UserContext from "../utils/UserContext";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import BarMap from "./../components/map"
-
+import SimpleMap from "./../components/map";
 
 function NewsFeed(props) {
   // console.log(userState);
-  const [newsFeedPosts, setNewsFeedPosts] =useState([]);
+  const [newsFeedPosts, setNewsFeedPosts] = useState([]);
 
   useEffect(() => {
     loadPosts();
     // console.log(props)
-  })
+  });
   // function deletePost(_id) {
   //     axios.delete(_id)
   //     .then(res => loadPosts())
@@ -21,41 +19,31 @@ function NewsFeed(props) {
   // }
 
   function loadPosts() {
-    axios
-      .get("http://localhost:3001/api/posts")
-      .then(res => {
-        setNewsFeedPosts(res.data)
-      })
+    axios.get("http://localhost:3001/api/posts").then(res => {
+      setNewsFeedPosts(res.data);
+    });
   }
 
   return (
     <>
-    <MakePost userInfo={props.userInfo}></MakePost>
-    <br></br>
-    <div>This is the current newsfeed: {props.userInfo.isLoggedIn}, {props.userInfo.username}</div>
-    {newsFeedPosts.map(post => {
-                  return (
-                    <div key={post._id}>{post.username}: At {(post.date)}
-                        <strong>
-                          {post.barName}:  
-
-      <div>This is the current newsfeed: </div>
-      <BarMap />
+      <MakePost userInfo={props.userInfo}></MakePost>
+      <br></br>
+      <div>
+        This is the current newsfeed: {props.userInfo.isLoggedIn},{" "}
+        {props.userInfo.username}
+      </div>
       {newsFeedPosts.map(post => {
         return (
-          <div key={post._id}>At {(post.date)}
-            <strong>
-              {post.barName}:
-                        </strong>
-            <span> had a {post.time} minute wait</span>
-            {/* <button onClick={() => deletePost(post._id)}>Delete</button> */}
+          <div key={post._id}>
+            {post.username}: At {post.date}
+            <strong>{post.barName}:</strong>
+            <div>This is the current newsfeed: </div>
+            <SimpleMap />
           </div>
         );
       })}
     </>
-  )
-
-
+  );
 }
 
 export default NewsFeed;
