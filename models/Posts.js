@@ -7,13 +7,7 @@ var PostSchema = new Schema({
     time: Number,
     lineLength: Number, 
     username: String,
-    date: { type: Date, default: Date.now },
-    userId: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "User"
-        }
-      ]
+    date: { type: Date, default: Date.now }
 });
 
 
