@@ -10,7 +10,7 @@ import Wrapper from "./components/Wrapper";
 import MakePost from "./components/MakePost";
 import HomeFeatures from "./components/HomeFeatures";
 import HomeDownload from "./components/HomeDownload";
-import Register from "./components/Register";
+import Login from "./components/Login";
 import HomeLiveFeed from "./components/HomeLiveFeed";
 import Footer from "./components/Footer";
 import Contacts from "./pages/Contacts";
@@ -27,26 +27,18 @@ function App() {
         <div>
           <Navbar />
           {/* <Route exact path="/login" component={Form} /> */}
-          <Route
-            exact
-            path="/login"
-            render={props => <Form {...props} userInfo={userState} />}
-          />
-          {/* <Route exact path="/register" component={Register}/> */}
+          <Route exact path="/register" render={(props) => <Form {...props} userInfo={userState}/>} />
+          <Route exact path="/login" component={Login}/>
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/newsfeed" component={NewsFeed} />
           {/* <Route exact path="/newsfeed" component={NewsFeed} /> */}
-          <Route
-            exact
-            path="/newsfeed"
-            render={props => <NewsFeed {...props} userInfo={userState} />}
-          />
           <Route exact path="/hotbars" component={HotBars} />
           <Route exact path="/search" component={SearchBar} />
           <Route exact path="/contacts" component={Contacts} />
         </div>
       </Router>
       <div>
-        <HomeLiveFeed />
+        {/* <HomeLiveFeed /> */}
         <Footer />
       </div>
     </>
