@@ -92,7 +92,7 @@ const [passWord, setPassword] = useState("");
               <div className="line-divider"></div>
               <div className="form-wrapper">
                 <p className="signup-text">
-                  Log in to save time waiting in line.
+                  Register to save time waiting in line.
                 </p>
                 <form className="form" action="#">
                   <fieldset className="form-group">
@@ -118,10 +118,10 @@ const [passWord, setPassword] = useState("");
                     ></input>
                   </fieldset>
                 </form>
-                <p>Don't have an account? You can <Link
-              to="/register"
+                <p>Have an account? You can <Link
+              to="/login"
               className={
-                window.location.pathname === "/register"
+                window.location.pathname === "/login"
                   ? "nav-link active"
                   : "nav-link"
               }
