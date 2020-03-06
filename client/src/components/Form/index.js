@@ -33,20 +33,39 @@ const [passWord, setPassword] = useState("");
     axios
     .get(`http://localhost:3002/api/appUsers/${userName}`)
     .then(res => {
-      console.log(res.data.password)
-      if (res.data.password !== passWord) {
-        alert('Incorrect password.')
+      console.log(res.data)
+      if (res.data !== null) {
+        alert('This username is already in use. Please choose another.')
       }
-      else if (res.data.password === passWord) {
-        window.location.href = 'http://localhost:3000/newsfeed';
-        const newUser = {
+      else {
+        axios
+        .post(`http://localhost:3002/api/appUsers`,
+        {
           username: userName, 
-          isLoggedIn: 1 
-        }
-    
-        localStorage.setItem("newUser", JSON.stringify(newUser));
-       
+          password: passWord
+        })
+        .then(console.log('user info posted'))
+        .then(res => {
+          const newUser = {
+              username: userName, 
+              isLoggedIn: 1 
+            }
+        
+            localStorage.setItem("newUser", JSON.stringify(newUser))
+            window.location.href = 'http://localhost:3000/newsfeed';
+          
+          })
       }
+      // else if (res.data.password === passWord) {
+      //   window.location.href = 'http://localhost:3000/newsfeed';
+      //   const newUser = {
+      //     username: userName, 
+      //     isLoggedIn: 1 
+      //   }
+    
+      //   localStorage.setItem("newUser", JSON.stringify(newUser));
+       
+      // }
       // else if (res.data === null) {
       //   console.log('hi')
       //   axios 

@@ -3,7 +3,18 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-function Navbar() {
+function Navbar(){
+
+function Logout () {
+  let newUser = {
+    username: "", 
+    isLoggedIn: 0 
+  }
+
+  localStorage.setItem("newUser", JSON.stringify(newUser))
+
+}
+
   return (
     <header id="header">
           <nav>
@@ -80,6 +91,19 @@ function Navbar() {
               }
             >
               Bar Search
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/login"
+              onClick={Logout}
+              className={
+                window.location.pathname === "/hotbars"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
+              Log out
             </Link>
           </li>
           <li className="nav-item">
