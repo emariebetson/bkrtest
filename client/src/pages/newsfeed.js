@@ -1,5 +1,5 @@
+
 import MakePost from "../components/MakePost";
-import UserContext from "../utils/UserContext";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SimpleMap from "./../components/map";
@@ -23,27 +23,26 @@ function NewsFeed(props) {
       setNewsFeedPosts(res.data);
     });
   }
-
   return (
     <>
-      <MakePost userInfo={props.userInfo}></MakePost>
-      <br></br>
-      <div>
-        This is the current newsfeed: {props.userInfo.isLoggedIn},{" "}
-        {props.userInfo.username}
-      </div>
+
+      <div>This is the current newsfeed: </div>
+      <BarMap />
       {newsFeedPosts.map(post => {
         return (
-          <div key={post._id}>
-            {post.username}: At {post.date}
-            <strong>{post.barName}:</strong>
-            <div>This is the current newsfeed: </div>
-            <SimpleMap />
+          <div key={post._id}>At {(post.date)}
+            <strong>
+              {post.barName}:
+                      </strong>
+            <span> had a {post.time} minute wait</span>
+            {/* <button onClick={() => deletePost(post._id)}>Delete</button> */}
+
           </div>
         );
       })}
     </>
-  );
+
+  )
 }
 
 export default NewsFeed;
