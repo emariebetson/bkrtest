@@ -1,28 +1,17 @@
-import React, {  useState, useContext} from "react";
-
+import React, { Component } from "react";
 //import "./style.css";
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import UserContext from "./../../utils/UserContext";
-import NewsFeed from "../../pages/newsfeed";
 
-function Form(props) {
-const [userState, setUserState] = useState({
-    username: "",
-    password: "", 
-    isLoggedIn: 0
-});
-const [formState, setFormState] = useState({
-  username: "",
-  password: "",
-  isLoggedIn: 0
-})
-
+class Form extends Component {
   // Setting the component's initial state
-  
+  state = {
+    username: "",
+    password: ""
+  };
 
  
-  function handleInputChange (event) {
+  handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
     const name = event.target.name;
@@ -31,39 +20,40 @@ const [formState, setFormState] = useState({
       value = value.substring(0, 15);
     }
     // Updating the input's state
-    setFormState({
-      username: value, 
-      password: value,
-      isLoggedIn: 1
+    this.setState({
+      [name]: value
     });
   };
 
-  function handleFormSubmit (event) {
-
+  handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    // context.username.set(this.state.username)
-    // context.isLoggedIn.set(this.state.isLoggedIn);
+    if (!this.state.username) {
+      alert("Fill out your username please!");
+    } else if (this.state.password.length < 6) {
+      alert(`Choose a more secure password ${this.state.username}`);
+    }
+    console.log(this.state);
     axios
       .post("http://localhost:3001/api/register", {
-        username: formState.username,
-        password: formState.password
+        username: this.state.username,
+        password: this.state.password,
+        isLoggedIn: true
       })
       .then(res => {
         console.log(res);
         console.log(res.data);
-        props.userInfo.username = formState.username;
-        props.userInfo.isLoggedIn = 1;
-        // setUserState({
-        //   username: res.username,
-        //   isLoggedIn: 1
-        // })
+        this.setState({
+          username: "",
+          password: ""
+        });
       })
       .catch(error => {
         console.log(error);
       });
   };
 
+  render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
       <>
@@ -87,9 +77,9 @@ const [formState, setFormState] = useState({
                       type="text"
                       className="form-control"
                       id="example-name"
-                      value={formState.username}
+                      value={this.state.username}
                       name="username"
-                      onChange={handleInputChange}
+                      onChange={this.handleInputChange}
                       placeholder="username"
                     ></input>
                   </fieldset>
@@ -98,9 +88,9 @@ const [formState, setFormState] = useState({
                       className="form-control"
                       type="password"
                       id="example-password"
-                      value={formState.password}
+                      value={this.state.password}
                       name="password"
-                      onChange={handleInputChange}
+                      onChange={this.handleInputChange}
                       placeholder="Password"
                     ></input>
                   </fieldset>
@@ -117,9 +107,9 @@ const [formState, setFormState] = useState({
             </Link></p>
                 <button
                   className="btn-secondary"
-                  onClick={handleFormSubmit}
+                  onClick={this.handleFormSubmit}
                 >
-                  Sign Up
+                  Submit
                 </button>
               </div>
               {/* <img
@@ -129,13 +119,10 @@ const [formState, setFormState] = useState({
               /> */}
             </div>
           </div>
-            <div>
-                User: {userState.username}
-                Is logged in: {userState.isLoggedIn}
-              </div>
         </section>
-        </>
+      </>
     );
+  }
 }
 
 export default Form;
