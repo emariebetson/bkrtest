@@ -30,8 +30,8 @@ function App() {
           <Route exact path="/register" render={(props) => <Form {...props} userInfo={userState}/>} />
           <Route exact path="/login" component={Login}/>
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/newsfeed" component={NewsFeed} />
           {/* <Route exact path="/newsfeed" component={NewsFeed} /> */}
-          <Route exact path="/newsfeed" render={(props) => <NewsFeed {...props} userInfo={userState}/>} />
           <Route exact path="/hotbars" component={HotBars} />
           <Route exact path="/search" component={SearchBar} />
         </div>

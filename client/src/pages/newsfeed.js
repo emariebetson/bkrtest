@@ -4,18 +4,15 @@ import axios from "axios";
 import BarMap from "./../components/map"
 
 
-function NewsFeed(props) {
+function NewsFeed() {
   
-  Confirm();
-
-function Confirm () {
   let userInfo = localStorage.getItem("newUser");
   let parsedInfo = JSON.parse(userInfo);
-  if (parsedInfo === null) {
-    // alert('You are not logged in')
-    window.location.href="http://localhost:3000/register"
-  }
-  else {
+  // if (parsedInfo === null) {
+  //   // alert('You are not logged in')
+  //   alert('you are not logged in')
+  // }
+  // else {
 
     const [newsFeedPosts, setNewsFeedPosts] =useState([]);
 
@@ -35,14 +32,12 @@ function Confirm () {
       .then(res => {
         setNewsFeedPosts(res.data)
       })
-  }
-
 
     return (
       <>
-      <MakePost userInfo={props.userInfo}></MakePost>
+      <MakePost></MakePost>
       <br></br>
-      {/* <div>This is the current newsfeed: {parsedInfo.username}, {parsedInfo.isLoggedIn}</div> */}
+   
       {newsFeedPosts.map(post => {
                     return (
                       <div key={post._id}>{post.username}: At {(post.date)}
@@ -52,26 +47,15 @@ function Confirm () {
                             <span> had a {post.time} minute wait</span>
                       </div>)}
     )}
-    {/* <BarMap/> */}
+   
     </>
   
     )
+    }
 
-  }
+
+
 
 }
 
-
-
-    
-
-  
-
-
-  }
-
-  
-
-
 export default NewsFeed;
-                  

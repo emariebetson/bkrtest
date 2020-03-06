@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import NewsFeed from "../../pages/newsfeed";
 
+console.log(axios);
+
 function Form() {
 const [userName, setUserName] = useState("");
 const [passWord, setPassword] = useState("");
@@ -26,34 +28,40 @@ const [passWord, setPassword] = useState("");
     
     event.preventDefault();
     
-    const newUser = {
-      username: userName, 
-      isLoggedIn: 1 
-    }
-
-    localStorage.setItem("newUser", JSON.stringify(newUser));
+    
 
     axios
-    .get(`http://localhost:3002/api/appUsers/sargissy223`)
+    .get(`http://localhost:3002/api/appUsers/${userName}`)
     .then(res => {
-      console.log(res.data)
-      if (res.data !== null) {
-        alert('This username already in use. Please choose another.')
+      console.log(res.data.password)
+      if (res.data.password !== passWord) {
+        alert('Incorrect password.')
       }
-      else if (res.data === null) {
-        console.log('hi')
-        axios 
-        .post(`http://localhost:3002/api/appUsers`, {
+      else if (res.data.password === passWord) {
+        window.location.href = 'http://localhost:3000/newsfeed';
+        const newUser = {
           username: userName, 
-          password: passWord
-        })
-        .then(res => {
-            })
-            .catch(error => {
-              console.log(error);
-            });
+          isLoggedIn: 1 
+        }
+    
+        localStorage.setItem("newUser", JSON.stringify(newUser));
+       
       }
-    })  
+      // else if (res.data === null) {
+      //   console.log('hi')
+      //   axios 
+      //   .post(`http://localhost:3002/api/appUsers`, {
+      //     username: userName, 
+      //     password: passWord
+      //   })
+      //   .then(res => {
+      //       })
+      //       .catch(error => {
+      //         console.log(error);
+      //       });
+      // }
+    }) 
+    .catch(err => console.log(err)) 
   };
 
  
@@ -105,15 +113,8 @@ const [passWord, setPassword] = useState("");
                   className="btn-secondary"
                   onClick={handleFormSubmit}
                 >
-                  <Link
-              to="/register"
-              className={
-                window.location.pathname === "/newsfeed"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-            >
-                  Sign Up</Link>
+                 
+                  Sign Up
                 </button>
               </div>
 

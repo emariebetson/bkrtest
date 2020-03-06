@@ -19,8 +19,11 @@ module.exports = {
     findOne: function(req, res) {
         db
         .findOne({username: req.params.username})
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err))
+        .then(dbModel => {
+            console.log(dbModel)
+            return res.json(dbModel)
+        })
+        .catch(err => res.status(422).json(err));
     },
     // find by username 
     //create movie
