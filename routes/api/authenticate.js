@@ -22,7 +22,10 @@ router.get('/test', (req, res) => {
 });
 
 // route for register action
-router.post('/register', auth.doRegister);
+router.post('/register', auth.doRegister, (req, res) => {
+        console.log('hi register route')
+        // res.json({json: true})
+});
 
 
 

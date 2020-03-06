@@ -49,7 +49,7 @@ class MakePost extends Component {
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
-      <div>
+      <div style = {{paddingTop: 100, marginLeft: 50}}>
         <p>Hello {this.state.barName}</p>
         <form className="form" action="/action_page.php">
         <label for="bars">Choose a bar:</label>
