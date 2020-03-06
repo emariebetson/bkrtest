@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('../../controllers/UserController')
 const postsController = require('../../controllers/PostsController');
+const barsController = require('../../controllers/BarController');
 
 
 router.route('/posts')
@@ -16,6 +17,14 @@ router.route('/appUsers')
 
 router.route('/appUsers/:username')
     .get(usersController.findOne);
+
+    router.route('/bars')
+    .get(barsController.findAll)
+    .post(barsController.create)
+    .delete(barsController.delete)
+
+router.route('/bars/:barname')
+    .get(barsController.findOne);
 
 
 

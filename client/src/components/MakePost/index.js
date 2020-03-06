@@ -11,7 +11,7 @@ function MakePost() {
   function handleBarChange (event) {
 
     setBarName(event.target.value);
-    console.log(barName)
+    // console.log(barName)
 
 
   };
@@ -19,7 +19,7 @@ function MakePost() {
   function handleTimeChange (event) {
 
     setTime(event.target.value);
-    console.log(time)
+    // console.log(time)
 
   }
 
@@ -27,6 +27,24 @@ function MakePost() {
     // console.log(userName.match.params.id)
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+    axios.get(`http://localhost:3002/api/bars/${barName}`)
+    .then(res => {
+      if (res.data.barName === barName) {
+        console.log('they are the same')
+      }
+      else {
+        axios.post(`http://localhost:3002/api/bars`, 
+        {barName: barName, posts: {username: parsedInfo.username, time: time}})
+        .then(res => {
+          // console.log(res);
+          // console.log(res.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      }
+    }
+      )
 
     if (parsedInfo.username === null) {
       alert('please log in to continue.')
@@ -36,16 +54,15 @@ function MakePost() {
       .post(
         "http://localhost:3002/api/posts",
         { barName: barName, time: time, username: parsedInfo.username },
-        console.log("i made it into the frontend post route")
+        // console.log("i made it into the frontend post route")
       )
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        // console.log(res);
+        // console.log(res.data);
       })
       .catch(error => {
         console.log(error);
       });
-
     }
   
 
