@@ -47,7 +47,7 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link
+            {/* <Link
               to="/profile"
               className={
                 window.location.pathname === "/profile"
@@ -56,7 +56,7 @@ function Navbar() {
               }
             >
               Profile
-            </Link>
+            </Link> */}
           </li>
           <li className="nav-item">
             <Link
@@ -79,11 +79,11 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              Hot Bars
+              Bar Search
             </Link>
           </li>
           <li className="nav-item">
-            <Link
+            {/* <Link
               to="/search"
               className={
                 window.location.pathname === "/search"
@@ -92,7 +92,7 @@ function Navbar() {
               }
             >
               Search
-            </Link>
+            </Link> */}
           </li>
         </ul>
       </div>

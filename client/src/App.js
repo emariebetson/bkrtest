@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Form from "./components/Form";
@@ -13,13 +13,13 @@ import HomeDownload from "./components/HomeDownload";
 import Login from "./components/Login";
 import HomeLiveFeed from "./components/HomeLiveFeed";
 import Footer from "./components/Footer";
+import Contacts from "./pages/Contacts";
 
 function App() {
-
   const [userState, setUserState] = useState({
     username: "",
     isLoggedIn: 0
-});
+  });
 
   return (
     <>
@@ -34,12 +34,13 @@ function App() {
           {/* <Route exact path="/newsfeed" component={NewsFeed} /> */}
           <Route exact path="/hotbars" component={HotBars} />
           <Route exact path="/search" component={SearchBar} />
+          <Route exact path="/contacts" component={Contacts} />
         </div>
       </Router>
       <div>
         {/* <HomeLiveFeed /> */}
         <Footer />
-        </div>
+      </div>
     </>
   );
 }
