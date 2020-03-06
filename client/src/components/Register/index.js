@@ -98,7 +98,7 @@ class Form extends Component {
                   className="btn-secondary"
                   onClick={this.handleFormSubmit}
                 >
-                  Sign Up
+                  Submit
                 </button>
               </div>
               {/* <img
