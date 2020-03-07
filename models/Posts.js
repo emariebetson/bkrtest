@@ -7,7 +7,7 @@ var PostSchema = new Schema({
     time: Number,
     lineLength: Number, 
     username: String,
-    date: { type: Date, default: Date.now }
+    date: String
 });
 
 

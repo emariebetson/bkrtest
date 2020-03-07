@@ -1,5 +1,6 @@
 
 import React, {useState, useEffect} from "react";
+import {Link} from 'react-router-dom';
 import MakePost from '../components/MakePost';
 import axios from "axios";
 import SimpleMap from "./../components/map";
@@ -34,7 +35,7 @@ function NewsFeed() {
       <MakePost></MakePost>
    {newsFeedPosts.map(post => {
                  return (
-                   <div key={post._id}>{post.username}: At {(post.date)}
+                   <div key={post._id}>{post.username}: At {(post.date)}, 
                        <strong>
                          {post.barName}:  
                          </strong>
