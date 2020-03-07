@@ -1,7 +1,12 @@
 import React from "react";
+import SearchMap from "../components/SearchMap";
+import HeatLocationMap from "../components/HeatLocationMap";
 
 function HotBars() {
-  return <div>List of Hot Bars</div>;
+  return <>
+    <SearchMap />
+    <HeatLocationMap />
+  </>;
 }
 
 export default HotBars;
