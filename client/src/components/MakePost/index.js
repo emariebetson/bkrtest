@@ -1,11 +1,15 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
+import moment from 'moment';
 
 function MakePost() {
+
   let userInfo = localStorage.getItem("newUser");
   let parsedInfo = JSON.parse(userInfo);
   const [barName, setBarName] = useState("");
   const [time, setTime]= useState("");
+  // const [currentDate, setCurrentDate] = useState("");
+  
 
 
   function handleBarChange (event) {
@@ -24,11 +28,13 @@ function MakePost() {
   }
 
   function handleFormSubmit (event) {
+    event.preventDefault();
+    let now = moment().format('DD/MM/YYYY, h:mm a');
     // console.log(userName.match.params.id)
     // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
+    
     axios.post(`http://localhost:3002/api/posts`, 
-    {username: parsedInfo.username, barName: barName, time: time})
+    {username: parsedInfo.username, barName: barName, time: time, date: now})
     .then(res => {
       // console.log(res);
       // console.log(res.data);
@@ -39,10 +45,10 @@ function MakePost() {
     
     axios.get(`http://localhost:3002/api/bars/${barName}`)
     .then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       if (res.data === null) {
         axios.post(`http://localhost:3002/api/bars`, 
-        {barName: barName, posts: {username: parsedInfo.username, time: time}})
+        {barName: barName, posts: {username: parsedInfo.username, time: time, date: now}})
         .then(res => {
           // console.log(res);
           // console.log(res.data);
@@ -55,7 +61,7 @@ function MakePost() {
         console.log('they are the same')
         axios
         .put(`http://localhost:3002/api/bars/${barName}`, {
-          posts: {username: parsedInfo.username, time: time}
+          posts: {username: parsedInfo.username, time: time, date: now}
         })
         .then(res => console.log(res))
         .catch(err => console.log(err))
@@ -88,6 +94,7 @@ function MakePost() {
 
   return (
     <div>
+
         <p>Hello {barName}</p>
         <form className="form" action="/action_page.php">
         <label for="bars">Choose a bar:</label>

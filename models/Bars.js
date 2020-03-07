@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var BarSchema = new Schema({
     barName: String,
-    posts: [{username: String, time: Number}],
+    posts: [{username: String, time: Number, date: String}],
 });
 
 

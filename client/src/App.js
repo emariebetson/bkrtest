@@ -14,6 +14,7 @@ import Login from "./components/Login";
 import HomeLiveFeed from "./components/HomeLiveFeed";
 import Footer from "./components/Footer";
 import Contacts from "./pages/Contacts";
+import BarPage from "./pages/BarPage";
 
 function App() {
   const [userState, setUserState] = useState({
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/hotbars" component={HotBars} />
           <Route exact path="/search" component={SearchBar} />
           <Route exact path="/contacts" component={Contacts} />
+          <Route exact path="/barpage" component={BarPage} />
         </div>
       </Router>
       <div>
