@@ -25,14 +25,16 @@ const [passWord, setPassword] = useState("");
   }
 
   function handleFormSubmit (event) {
-    
+    console.log('in the fform submit')
     event.preventDefault();
     
     
 
     axios
-    .get(`http://localhost:3002/api/appUsers/${userName}`)
+    .get(`http://localhost:3002/api/appUsers/${userName}`, 
+    console.log('in the first axios call'))
     .then(res => {
+      console.log('in the res')
       console.log(res.data)
       if (res.data !== null) {
         alert('This username is already in use. Please choose another.')
@@ -40,11 +42,11 @@ const [passWord, setPassword] = useState("");
       else {
         axios
         .post(`http://localhost:3002/api/appUsers`,
+        console.log('i aam in the post'),
         {
           username: userName, 
           password: passWord
         })
-        .then(console.log('user info posted'))
         .then(res => {
           const newUser = {
               username: userName, 
@@ -55,6 +57,7 @@ const [passWord, setPassword] = useState("");
             window.location.href = 'http://localhost:3000/newsfeed';
           
           })
+          .catch(err => console.log(err));
       }
       // else if (res.data.password === passWord) {
       //   window.location.href = 'http://localhost:3000/newsfeed';

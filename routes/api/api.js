@@ -26,6 +26,9 @@ router.route('/appUsers/:username')
 router.route('/bars/:barname')
     .get(barsController.findOne);
 
+router.route(`/bars/:barname`)
+    .put(barsController.update);
+
 
 
 module.exports = router;
