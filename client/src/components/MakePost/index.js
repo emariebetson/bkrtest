@@ -27,10 +27,26 @@ function MakePost() {
     // console.log(userName.match.params.id)
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+    axios.post(`http://localhost:3002/api/posts`, 
+    {username: parsedInfo.username, barName: barName, time: time})
+    .then(res => {
+      // console.log(res);
+      // console.log(res.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+    
     axios.get(`http://localhost:3002/api/bars/${barName}`)
     .then(res => {
       if (res.data.barName === barName) {
         console.log('they are the same')
+        axios
+        .put(`http://localhost:3002/api/bars/${barName}`, {
+          posts: {username: parsedInfo.username, time: time}
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
       }
       else {
         axios.post(`http://localhost:3002/api/bars`, 
@@ -46,24 +62,24 @@ function MakePost() {
     }
       )
 
-    if (parsedInfo.username === null) {
-      alert('please log in to continue.')
-    } else {
+    // if (parsedInfo.username === null) {
+    //   alert('please log in to continue.')
+    // } else {
 
-      axios
-      .post(
-        "http://localhost:3002/api/posts",
-        { barName: barName, time: time, username: parsedInfo.username },
-        // console.log("i made it into the frontend post route")
-      )
-      .then(res => {
-        // console.log(res);
-        // console.log(res.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
+    //   axios
+    //   .post(
+    //     "http://localhost:3002/api/posts",
+    //     { barName: barName, time: time, username: parsedInfo.username },
+    //     // console.log("i made it into the frontend post route")
+    //   )
+    //   .then(res => {
+    //     // console.log(res);
+    //     // console.log(res.data);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+    // }
   
 
   }
@@ -78,7 +94,7 @@ function MakePost() {
             <option value="Danny's">Danny's</option>
             <option value="OGs">OGs</option>
             <option value="Hangge Uppe">Hangge Uppe</option>
-            <option value="Happy Camper">Happy Camper</option>
+            <option value="bar123">bar123</option>
           </select>
           <input
             value={time}
