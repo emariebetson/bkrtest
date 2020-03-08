@@ -10,6 +10,7 @@ function BarPage() {
   const [barPosts, setBarPosts] =useState([]);
   const [avgTime, setAvgTime] = useState();
   const [urlName, setUrlName] = useState(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+  const [barName, setBarName] = useState();
 
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function BarPage() {
           console.log(res.data.posts);
         // console.log(res.data)
         // console.log(res.data)
+        setBarName(res.data.barName)
         setBarPosts(res.data.posts)
         // console.log(barPosts)
         let avg; 
@@ -45,6 +47,7 @@ function BarPage() {
   
  return (
    <div>
+       <h2>{barName}</h2>
    {barPosts.map(post => {
                  return (
                    <div key={post._id}>{post.username}:
