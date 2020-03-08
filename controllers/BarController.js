@@ -38,7 +38,7 @@ module.exports = {
     //update movie
     update: function(req, res) {
         db
-            .findOneAndUpdate({ barName: req.params.barname }, { $push: { posts: {username: req.body.posts.username, time: req.body.posts.time, date: req.body.posts.date}}})
+            .findOneAndUpdate({ urlName: req.params.urlName }, { $push: { posts: {username: req.body.posts.username, time: req.body.posts.time, date: req.body.posts.date}}})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },

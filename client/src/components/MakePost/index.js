@@ -43,7 +43,7 @@ function MakePost() {
       console.log(error);
     });
     
-    axios.get(`http://localhost:3002/api/bars/${barName}`)
+    axios.get(`http://localhost:3002/api/bars/${parsedName}`)
     .then(res => {
       // console.log(res.data)
       if (res.data === null) {
@@ -57,10 +57,10 @@ function MakePost() {
           console.log(error);
         });
       }
-      else if (res.data.barName === barName) {
+      else  {
         console.log('they are the same')
         axios
-        .put(`http://localhost:3002/api/bars/${barName}`, {
+        .put(`http://localhost:3002/api/bars/${parsedName}`, {
           posts: {username: parsedInfo.username, time: time, date: now}
         })
         .then(res => console.log(res))
