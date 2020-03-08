@@ -28,6 +28,7 @@ function App() {
         <div>
           <Navbar />
           {/* <Route exact path="/login" component={Form} /> */}
+          <Route path="/bars/:barName" component={BarPage} />
           <Route exact path="/register" component={Form} />
           <Route exact path="/login" component={Login}/>
           <Route exact path="/profile" component={Profile} />
@@ -36,7 +37,7 @@ function App() {
           <Route exact path="/hotbars" component={HotBars} />
           <Route exact path="/search" component={SearchBar} />
           <Route exact path="/contacts" component={Contacts} />
-          <Route exact path="/barpage" component={BarPage} />
+          
         </div>
       </Router>
       <div>

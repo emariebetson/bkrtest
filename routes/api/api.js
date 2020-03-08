@@ -23,10 +23,10 @@ router.route('/appUsers/:username')
     .post(barsController.create)
     .delete(barsController.delete)
 
-router.route('/bars/:barname')
+router.route('/bars/:urlName')
     .get(barsController.findOne);
 
-router.route(`/bars/:barname`)
+router.route(`/bars/:urlName`)
     .put(barsController.update);
 
 

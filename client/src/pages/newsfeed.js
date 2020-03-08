@@ -24,7 +24,7 @@ function NewsFeed() {
     axios
       .get("http://localhost:3002/api/posts")
       .then(res => {
-        // console.log(res.data)
+        console.log(res.data)
         setNewsFeedPosts(res.data)
       })
     }
@@ -37,7 +37,7 @@ function NewsFeed() {
                  return (
                    <div key={post._id}>{post.username}: At {(post.date)}, 
                        <strong>
-                         {post.barName}:  
+                         <Link to={`/bars/${post.urlName}`}>{post.barName}</Link>:  
                          </strong>
                          <span> had a {post.time} minute wait</span>
                    </div>)}

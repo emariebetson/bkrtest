@@ -4,6 +4,7 @@ const db = require('../models/Bars');
 module.exports = {
     //find all movies
     findAll: function(req, res) {
+        console.log('i am finding all bars')
         db
             .find({})
             .then(dbModel => res.json(dbModel))
@@ -25,8 +26,9 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findOne: function(req, res) {
+        console.log('in the find one route')
         db
-        .findOne({username: req.params.username})
+        .findOne({urlName: req.params.urlName})
         .then(dbModel => {
             console.log(dbModel)
             return res.json(dbModel)

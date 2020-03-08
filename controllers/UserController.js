@@ -20,7 +20,7 @@ module.exports = {
         db
         .findOne({username: req.params.username})
         .then(dbModel => {
-            console.log(dbModel)
+            // console.log(dbModel)
             return res.json(dbModel)
         })
         .catch(err => res.status(422).json(err));

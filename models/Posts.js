@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
     barName: String,
+    urlName: String,
     time: Number,
     lineLength: Number, 
     username: String,

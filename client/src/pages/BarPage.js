@@ -5,13 +5,19 @@ import axios from "axios";
 
 function BarPage() {
 
+    
 
   const [barPosts, setBarPosts] =useState([]);
   const [avgTime, setAvgTime] = useState();
+  const [urlName, setUrlName] = useState(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+
 
   useEffect(() => {
-    loadPosts();
+    loadPosts(urlName);
+    console.log(urlName);
   })
+
+ 
 
   function loadPosts() {
     
@@ -19,10 +25,13 @@ function BarPage() {
     //   console.log('there is a user logged in')
     // console.log(window.location)
     // }
+    const query = 
+    console.log(query)
     axios
-      .get("http://localhost:3002/api/bars/OGs")
+      .get(`http://localhost:3002/api/bars/${urlName}`)
       .then(res => {
-        console.log(res.data)
+          console.log(res.data.posts);
+        // console.log(res.data)
         // console.log(res.data)
         setBarPosts(res.data.posts)
         // console.log(barPosts)
