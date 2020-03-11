@@ -31,7 +31,7 @@ function NewsFeed() {
 
   
  return (
-   <div>
+   <div style = {{paddingTop: 100, marginLeft: 175}}>
       <MakePost></MakePost>
    {newsFeedPosts.map(post => {
                  return (
