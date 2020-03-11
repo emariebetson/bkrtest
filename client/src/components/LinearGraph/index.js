@@ -99,12 +99,19 @@ const data = {
   ]
 };
 
+const style = {
+  maxWidth: '50%', 
+  position: 'relative'
+}
+
+
+
 
   // displayName: 'BarExample'
 
     return (
-      <div>
-        <h2>Horizontal Bar Example</h2>
+      <div style={style}>
+        <h2>Wait times by hour</h2>
         <HorizontalBar data={data}/>
       </div>
     );

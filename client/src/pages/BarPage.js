@@ -7,6 +7,11 @@ import { set } from "mongoose";
 
 function BarPage() {
 
+  const style = {
+    width: '300px', 
+    height: '200px'
+  
+  }
     
 
   const [barPosts, setBarPosts] =useState([]);
@@ -81,7 +86,9 @@ function BarPage() {
   
  return (
    <div>
+     <div className={style}>
     <LinearGraph></LinearGraph>
+    </div>
        <h2>{barName}</h2>
    {barPosts.map(post => {
                  return (
