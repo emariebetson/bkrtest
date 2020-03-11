@@ -18,7 +18,6 @@ module.exports = {
     },
     //create movie
     create: function(req, res) {
-        console.log('i am in the create route')
         db
             .create(req.body)
             .then(dbModel => res.json(dbModel))

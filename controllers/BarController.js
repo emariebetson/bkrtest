@@ -47,7 +47,7 @@ module.exports = {
     update: function(req, res) {
         console.log(req.body)
         db
-            .findOneAndUpdate({ urlName: req.params.urlName }, { $push: { posts: {username: req.body.username, time: req.body.time, date: req.body.date, dayOfWeek: req.body.dayOfWeek, formattedDate: req.body.formattedDate}}})
+            .findOneAndUpdate({ urlName: req.params.urlName }, { $push: { posts: {username: req.body.username, time: req.body.time, comment: req.body.comment, bouncer: req.body.bouncer, date: req.body.date, dayOfWeek: req.body.dayOfWeek, formattedDate: req.body.formattedDate}}})
             .then(dbModel => {
                 console.log(dbModel);
                 res.json(dbModel)})

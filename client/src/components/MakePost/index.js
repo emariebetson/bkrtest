@@ -7,6 +7,8 @@ function MakePost() {
   let userInfo = localStorage.getItem("newUser");
   let parsedInfo = JSON.parse(userInfo);
   const [barName, setBarName] = useState("");
+  const [comment, setComment] = useState("");
+  const [bouncer, setBouncer] = useState("");
   const [time, setTime]= useState("");
   // const [currentDate, setCurrentDate] = useState("");
   
@@ -20,11 +22,24 @@ function MakePost() {
 
   };
 
+  function handleBouncerChange (event) {
+
+    setBouncer(event.target.value);
+    // console.log(barName)
+
+
+  };
+
+
   function handleTimeChange (event) {
 
     setTime(event.target.value);
     // console.log(time)
 
+  }
+
+  function handleCommentChange(event) {
+    setComment(event.target.value)
   }
 
   function handleFormSubmit (event) {
@@ -36,7 +51,7 @@ function MakePost() {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     let parsedName = (barName.replace(/\s/g, '')).toLowerCase();
     axios.post(`http://localhost:3002/api/posts`, 
-    {username: parsedInfo.username, barName: barName, urlName: parsedName, time: time, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek})
+    {username: parsedInfo.username, barName: barName, urlName: parsedName, time: time, comment: comment, bouncer: bouncer, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek})
     .then(res => {
       // console.log(res);
       // console.log(res.data);
@@ -50,7 +65,7 @@ function MakePost() {
       // console.log(res.data)
       if (res.data === null) {
         axios.post(`http://localhost:3002/api/bars`, 
-        {barName: barName, urlName: parsedName, posts: {username: parsedInfo.username, time: time, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek}})
+        {barName: barName, urlName: parsedName, posts: {username: parsedInfo.username, time: time, comment: comment, bouncer: bouncer, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek}})
         .then(res => {
           // console.log(res);
           // console.log(res.data);
@@ -64,7 +79,7 @@ function MakePost() {
         axios
         .put(`http://localhost:3002/api/bars/${parsedName}`,
        
-          {username: parsedInfo.username, time: time, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek}
+          {username: parsedInfo.username, time: time, comment: comment, bouncer: bouncer, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek}
         )
         .then(res => console.log(res))
         .catch(err => console.log(err))
@@ -98,16 +113,16 @@ function MakePost() {
   return (
     <div>
 
-        <p>Hello {barName}</p>
+        <p>Entering information about: {barName}</p>
         <form className="form" action="/action_page.php">
         <label for="bars">Choose a bar:</label>
-          <select value={barName} name="barName" onChange={handleBarChange}>
-          <option value="Select an option">Select an option</option>
+          <input value={barName} name="barName" type="text" placeholder="bar name" onChange={handleBarChange}>
+          {/* <option value="Select an option">Select an option</option>
             <option value="Danny's">Danny's</option>
             <option value="OGs">OGs</option>
             <option value="Hangge Uppe">Hangge Uppe</option>
-            <option value="bar123">bar123</option>
-          </select>
+            <option value="bar123">bar123</option> */}
+          </input>
           <input
             value={time}
             name="time"
@@ -115,6 +130,21 @@ function MakePost() {
             type="number"
             placeholder="time"
           />
+          <input
+            value={comment}
+            name="comment"
+            onChange={handleCommentChange}
+            type="text"
+            placeholder="comments..."
+          />
+          <span>Bouncer experience:</span>
+          <select value={bouncer} id="bouncer experience" name="bouncer" onChange={handleBouncerChange}>
+          <option value="Choose">Choose your rating</option>
+          <option value="Great">Great</option>
+          <option value="Good">Good</option>
+          <option value="Fine">Fine</option>
+          <option value="Bad">Bad</option>
+        </select>
           <button onClick={handleFormSubmit}>Submit</button>
         </form>
       </div>

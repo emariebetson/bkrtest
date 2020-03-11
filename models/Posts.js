@@ -5,6 +5,8 @@ var Schema = mongoose.Schema;
 var PostSchema = new Schema({
     barName: String,
     urlName: String,
+    comment: String, 
+    bouncer: String, 
     dayOfWeek: String, 
     formattedDate: String,
     time: Number,

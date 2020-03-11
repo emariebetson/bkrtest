@@ -66,19 +66,19 @@ function BarPage() {
         // console.log(dates)
 
       })
-      axios
-    .get(`http://localhost:3002/api/posts/danny's/Sunday`)
-    .then(res => {
-      // console.log(res.data)
+    //   axios
+    // .get(`http://localhost:3002/api/posts/danny's/Sunday`)
+    // .then(res => {
+    //   // console.log(res.data)
       
-      res.data.forEach(post => {
-        resData.push({
-          hour: post.formattedDate, time: post.time
-        })
-      })
-      // setData(resData);
-      // console.log(resData);
-    });
+    //   res.data.forEach(post => {
+    //     resData.push({
+    //       hour: post.formattedDate, time: post.time
+    //     })
+    //   })
+    //   // setData(resData);
+    //   // console.log(resData);
+    // });
 
       
     }
@@ -96,7 +96,7 @@ function BarPage() {
                   
                          this bar  
                    
-                         <span> had a {post.time} minute wait at {post.date}</span>
+                         <span> had a {post.time} minute wait at {post.date}. Comment: {post.comment}. Bouncer experience: {post.bouncer}</span>
                    </div>)}
  )}</div>
 
