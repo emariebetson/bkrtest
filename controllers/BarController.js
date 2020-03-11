@@ -48,7 +48,9 @@ module.exports = {
         console.log(req.body)
         db
             .findOneAndUpdate({ urlName: req.params.urlName }, { $push: { posts: {username: req.body.username, time: req.body.time, date: req.body.date, dayOfWeek: req.body.dayOfWeek, formattedDate: req.body.formattedDate}}})
-            .then(dbModel => res.json(dbModel))
+            .then(dbModel => {
+                console.log(dbModel);
+                res.json(dbModel)})
             .catch(err => res.status(422).json(err));
     },
     //delete movie

@@ -62,9 +62,10 @@ function MakePost() {
       else  {
         console.log('they are the same')
         axios
-        .put(`http://localhost:3002/api/bars/${parsedName}`, {
-          posts: {username: parsedInfo.username, time: time, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek}
-        })
+        .put(`http://localhost:3002/api/bars/${parsedName}`,
+       
+          {username: parsedInfo.username, time: time, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek}
+        )
         .then(res => console.log(res))
         .catch(err => console.log(err))
       }
