@@ -34,7 +34,7 @@ function BarPage() {
     axios
       .get(`http://localhost:3002/api/bars/${urlName}`)
       .then(res => {
-          console.log(res.data.posts);
+          // console.log(res.data.posts);
         // console.log(res.data)
         // console.log(res.data)
         setBarName(res.data.barName)
@@ -64,7 +64,7 @@ function BarPage() {
       axios
     .get(`http://localhost:3002/api/posts/danny's/Sunday`)
     .then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       
       res.data.forEach(post => {
         resData.push({
