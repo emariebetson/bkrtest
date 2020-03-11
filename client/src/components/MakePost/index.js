@@ -30,11 +30,13 @@ function MakePost() {
   function handleFormSubmit (event) {
     event.preventDefault();
     let now = moment().format('MM/DD/YYYY, h:mm a');
+    let dayOfWeek = moment().format('dddd');
+    let formattedDate = moment().format('h a');
     // console.log(userName.match.params.id)
     // Preventing the default behavior of the form submit (which is to refresh the page)
     let parsedName = (barName.replace(/\s/g, '')).toLowerCase();
     axios.post(`http://localhost:3002/api/posts`, 
-    {username: parsedInfo.username, barName: barName, urlName: parsedName, time: time, date: now})
+    {username: parsedInfo.username, barName: barName, urlName: parsedName, time: time, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek})
     .then(res => {
       // console.log(res);
       // console.log(res.data);
@@ -48,7 +50,7 @@ function MakePost() {
       // console.log(res.data)
       if (res.data === null) {
         axios.post(`http://localhost:3002/api/bars`, 
-        {barName: barName, urlName: parsedName, posts: {username: parsedInfo.username, time: time, date: now}})
+        {barName: barName, urlName: parsedName, posts: {username: parsedInfo.username, time: time, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek}})
         .then(res => {
           // console.log(res);
           // console.log(res.data);
@@ -61,7 +63,7 @@ function MakePost() {
         console.log('they are the same')
         axios
         .put(`http://localhost:3002/api/bars/${parsedName}`, {
-          posts: {username: parsedInfo.username, time: time, date: now}
+          posts: {username: parsedInfo.username, time: time, date: now, formattedDate: formattedDate, dayOfWeek: dayOfWeek}
         })
         .then(res => console.log(res))
         .catch(err => console.log(err))

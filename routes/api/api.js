@@ -26,6 +26,9 @@ router.route('/appUsers/:username')
 router.route('/bars/:urlName')
     .get(barsController.findOne);
 
+router.route('/posts/:urlName/:dayOfWeek')
+    .get(postsController.findBoth);
+
 router.route(`/bars/:urlName`)
     .put(barsController.update);
 

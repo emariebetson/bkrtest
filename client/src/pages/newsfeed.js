@@ -24,7 +24,7 @@ function NewsFeed() {
     axios
       .get("http://localhost:3002/api/posts")
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         setNewsFeedPosts(res.data)
       })
     }

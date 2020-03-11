@@ -24,6 +24,14 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    findBoth: function(req, res) {
+        // console.log(req)
+        db
+        .find(
+            { $and: [ {urlName: req.params.urlName}, {dayOfWeek: req.params.dayOfWeek}]}
+        )
+        .then(dbModel => res.json(dbModel))
+    },
     //update movie
     update: function(req, res) {
         db.Posts
